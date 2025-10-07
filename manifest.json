@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Zird MyKoob Tools",
+    "version": "0.1",
+
+    "description": "Changes the CSS of MyKoob to look nicer",
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://family.mykoob.lv/*",
+                "https://mykoob.lv/*"
+            ],
+            "js": ["script.js"]
+        }
+    ]
+}
