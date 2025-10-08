@@ -32,7 +32,7 @@ const custom_Style = `
     /* complete change in layout */
 
     body, span {
-        font-family: "Montserrat", sans-serif !important;
+        font-family: "Inter" !important;
         font-weight: 500 !important;
     }
     #head, #middle, #foot, #main_content {
@@ -44,9 +44,14 @@ const custom_Style = `
     }
 
     /* Cookie forms */
-    .stpd_cmp_form, .stpd_cmp_wrapper, .stpd_cmp {
+    .stpd_cmp_form, .stpd_cmp_wrapper, .stpd_cmp, #c-p-bn, #s-all-bn, #s-sv-bn  {
         display: none !important;
     }
+    
+    #c-s-bn, #s-rall-bn {
+        background-color: #a2ecff;
+    }
+
 
 
     /*header*/
@@ -153,7 +158,6 @@ const custom_Style = `
     .datatable .both-borders { 
         border: 1px solid #e2e2e3;
     }
-
 
     .profile-container {
         font-size: 14px !important;
