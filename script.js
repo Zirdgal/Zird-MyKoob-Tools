@@ -39,12 +39,11 @@ const custom_Style = `
         background-color: #fff;
     }
     #header, #main_content {
-        width: 1200px !important;
+        max-width: 1200px !important;
         background-color: #fff;
     }
-
     /* Cookie forms */
-    .stpd_cmp_form, .stpd_cmp_wrapper, .stpd_cmp, #c-p-bn, #s-all-bn, #s-sv-bn  {
+    .stpd_cmp_form, .stpd_cmp_wrapper, .stpd_cmp, #c-p-bn, #s-all-bn, #s-sv-bn, .c  {
         display: none !important;
     }
     
@@ -82,9 +81,6 @@ const custom_Style = `
     }
     #header-top {
         padding: 0vh 0vh;
-    }
-    .c {
-        display: none !important;
     }
     #header-bottom {
         margin-top: 0px !important;
@@ -128,6 +124,12 @@ const custom_Style = `
     #stab_active {
         height: 27px !important;
     }
+    #counter_assignments, #counter_materials {
+        left: 80% !important;
+    }
+    /*.user-profile:before {
+        content: '&#9937;';
+    }*/
 
     /* middle/ aktivitātes */
 
@@ -146,7 +148,7 @@ const custom_Style = `
     #profile_right_data {
         width: 900px !important;
     }
-    #profile_right_data .datatable td[style*="width:300px"] {
+    #profile_right_data .datatable td[style*="width:300px"], #settings_content {
         display: none !important;
     }
     .activities-class {
@@ -156,13 +158,20 @@ const custom_Style = `
     /* homepage  left */
 
     .datatable .both-borders { 
+        border-radius: 10px;
         border: 1px solid #e2e2e3;
     }
 
     .profile-container {
         font-size: 14px !important;
     }
-
+    .my_profile_picture {
+        border-radius: 15px;
+        border: solid 1px #e2e2e3;
+    }
+    #e497548c2f4d913b7901c4e51ba59207, #profile_left_data .both-borders>div:nth-child(4),  #profile_left_data .both-borders>div:nth-child(5),  #profile_left_data .both-borders>div:nth-child(7)  {
+        display: none !important;
+    }
 `;
 
 // too lazy to actually make this into one thing so its seperated :3
