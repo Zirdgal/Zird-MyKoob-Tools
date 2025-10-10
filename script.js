@@ -4,6 +4,55 @@
 // For my mother who uses my pc and is technologically inept despite her differing opinion
 //alert("You are using Zird MyKoob Tools Beta, there may be stylization issues as it is not yet complete...")
 
+// css is below we just adding extra shit for fun :3
+
+
+
+// moving the topbar to the left side panel on the homepage
+
+// var newBtn = document.createElement("button");
+// document.body.appendChild(newBtn);
+// newBtn.innerText = "HEHEHAHA";
+
+
+// Injects a lot of html stuff into the webpage
+function injectContent() {
+
+    const homepageLeftBar = document.querySelector("#profile_left_data > table > tbody > tr > td");
+
+    if (homepageLeftBar) {
+
+        homepageLeftBar.setAttribute("id", "homePageLeftBar");
+        const endWorkDiv = document.querySelector(`#homePageLeftBar > div:nth-child(8)`);
+        const socialBtnsDiv = document.querySelector(`#homePageLeftBar > div:nth-child(23)`);
+        
+        if (endWorkDiv && endWorkDiv.childElementCount < 1) {
+            endWorkDiv.setAttribute("id", "endWorkParent");
+            const endWorkBtn = document.createElement("a");
+            endWorkBtn.href = "?world/bye";
+            endWorkBtn.innerText = "➜] Beigt darbu";
+            endWorkDiv.appendChild(endWorkBtn);
+
+            if (socialBtnsDiv && socialBtnsDiv.childElementCount < 1) {
+                socialBtnsDiv.setAttribute("id", "socialBtnsDiv");
+                
+                // reparents the topbar to here
+                let topbarDiv = document.querySelector("#header-buttons");
+                socialBtnsDiv.appendChild(topbarDiv);
+            
+            
+            
+                clearInterval(pollInterval);
+
+            };
+        };
+    };
+};
+
+const pollInterval = setInterval(injectContent, 100);
+
+
+
 // Add custom CSS:
 const add_Custom_CSS = css => document.head.appendChild(document.createElement("style")).innerHTML = css;
 
@@ -59,6 +108,9 @@ const custom_Style = `
         background-image: none !important;
         background: none !important;
     }
+    #header { 
+        width: auto !important;
+    }
     .tta, .header-subtabs li a {
         text-shadow: none !important;
         display: flex !important;
@@ -77,18 +129,17 @@ const custom_Style = `
         max-height: none !important;
     }
     #head {
-        height: 93px !important;
+        padding-top: 5px !important;
+        height: 45px !important;
     }
-    #header-top {
-        padding: 0vh 0vh;
-    }
+
     #header-bottom {
+        height: auto;
         margin-top: 0px !important;
-        height: 62px !important;
         /*background-color: #cef5ffff;*/
     }
     .sel, .tta, #mtab_1, #mtab_2, #mtab_3, #mtab_4, #mtab_5, #mtab_6, #mtab_7, #mtab_8 {
-        height: 60px !important;
+        height: 45px !important;
     }
     .top-menu-tab {
         font-size: 16px !important;
@@ -127,14 +178,8 @@ const custom_Style = `
     #counter_assignments, #counter_materials {
         left: 80% !important;
     }
-    .header-opt-logout a {
-        color: #c60000ff !important;   
-    }
-    .header-opt-logout a:before {
-        content: "➜] ";
-    }
-    .header-opt-logout {
-        margin-left: 3em !important;
+    .header-opt-logout, #top_user_info {
+        display: none !important;
     }
     #mtab_1 div a span, #main-tabs-ul > .sel:nth-child(1) div a span {
         width: 82px !important;
@@ -149,6 +194,10 @@ const custom_Style = `
 
     /* middle/ aktivitātes */
 
+    .main {
+        width: 100% !important;
+    }
+
     #middle {
         display: flex !important;
         justify-content: center;
@@ -158,13 +207,10 @@ const custom_Style = `
         display: flex !important;
         justify-content: center;
     }
-    #middle {
-        padding-top: 93px !important;
-    }
     #profile_right_data {
-        width: 900px !important;
+        max-width: 900px !important;
     }
-    #profile_right_data .datatable td[style*="width:300px"], #settings_content {
+    #profile_right_data .datatable td[style*="width:300px"], #settings_content, #header-top  {
         display: none !important;
     }
     .activities-class {
@@ -188,8 +234,18 @@ const custom_Style = `
     #e497548c2f4d913b7901c4e51ba59207, #profile_left_data .both-borders>div:nth-child(4),  #profile_left_data .both-borders>div:nth-child(5),  #profile_left_data .both-borders>div:nth-child(7), .seperator, #header-opt-help a, .mykoob-logo  {
         display: none !important;
     }
-
-
+    #endWorkParent {
+        height: 30px !important;
+        display: flex !important;
+        justify-content: center;
+    }
+    #endWorkParent a {
+        color: #c60000ff !important;
+        font-size: 13.6px;
+    }
+    #endWorkParent a:hover {
+        text-decoration: underline !important;
+    }
     /* homepage right */
     #activities_settings {
 
@@ -199,8 +255,13 @@ const custom_Style = `
         text-decoration: underline !important;
     }
     #activities_settings:before {
-        content: "⚙️";
+        content: "⚙︎ ";
         text-decoration: none;
+    }
+    #socialBtnsDiv {
+        height: 30px !important;
+        display: flex !important;
+        justify-content: center;
     }
 
 
