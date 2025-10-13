@@ -217,7 +217,17 @@ const custom_Style = `
         max-width: none !important;
     }
 
+
+
+
+
     /* homepage  left */
+
+
+    .profile-container .f1 {
+        white-space: break-spaces !important;
+        text-align: center;
+    }
 
     .datatable .both-borders { 
         border-radius: 10px;
@@ -268,6 +278,7 @@ const custom_Style = `
     /* chat page*/
     iframe {
         width: 90vw;
+        max-width: 1200px !important;
     }
 
     /* Assignment page (uzd) */
