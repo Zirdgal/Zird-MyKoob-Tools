@@ -17,9 +17,8 @@
 
 // Injects a lot of html stuff into the webpage
 function injectContent() {
-
     const homepageLeftBar = document.querySelector("#profile_left_data > table > tbody > tr > td");
-
+    // this is to move the secondary top bar items to the main page
     if (homepageLeftBar) {
 
         homepageLeftBar.setAttribute("id", "homePageLeftBar");
@@ -45,6 +44,19 @@ function injectContent() {
                 clearInterval(pollInterval);
 
             };
+        };
+    };
+
+    // Footer Injection
+
+    const footer = document.querySelector("#foot > #footer");
+    if (footer) { // if it exists
+        if (footer.childElementCount < 3) {
+            const zmtVersionDiv = document.createElement("div");
+            footer.appendChild(zmtVersionDiv);
+            zmtVersionDiv.setAttribute("id", "zmtVersion");
+
+            zmtVersionDiv.innerText = "Zird MyKoob Tools Version: 0.0.001"
         };
     };
 };
@@ -177,6 +189,14 @@ const custom_Style = `
     }
     #counter_assignments, #counter_materials {
         left: 80% !important;
+        background-image: none;
+        width: 1.5em;
+        height: 1.5em;
+        background-color: #5bbed6ff;
+        border-radius: 50%;
+        font-size: 14px;
+        text-align: center;
+        line-height: 1.45;
     }
     .header-opt-logout, #top_user_info {
         display: none !important;
@@ -187,8 +207,10 @@ const custom_Style = `
         background: url('https://family-cdn.mykoob.lv//static/img/mykoob_logo_small.png') no-repeat;
     }
     
-
-
+    /* Footer  */
+    #zmtVersion {
+        padding-left: 20vw;
+    }
 
 
 
@@ -292,6 +314,23 @@ const custom_Style = `
     #ap_description {
         width: 98% !important;
         overflow-x: hidden !important;
+    }
+
+
+
+    /* Dienasgrāmata */
+
+    .uncheck {
+        width: 20px;
+        height: 20px;
+        background-size: 16px 16px;
+    }
+    .blank_gray {
+        display: none;
+    }
+
+    select {
+        border-radius: 5px;
     }
 
 `;
