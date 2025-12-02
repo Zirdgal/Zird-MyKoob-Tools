@@ -56,7 +56,39 @@ function injectContent() {
             footer.appendChild(zmtVersionDiv);
             zmtVersionDiv.setAttribute("id", "zmtVersion");
 
-            zmtVersionDiv.innerText = "Zird MyKoob Tools Version: 0.0.001"
+            zmtVersionDiv.innerText = "Zird MyKoob Tools Version: 0.0.001";
+        };
+    };
+
+    // Grade calculator
+    let currentURL = window.location.href;
+
+    if (currentURL) {
+        if ( currentURL == "https://family.mykoob.lv/?viewgrades/period" || currentURL == "https://mykoob.lv/?viewgrades/period") {
+            /*
+                                                                                months
+                Table HTML format                                                VVV  
+                #gradesContent > .tabContent > div > table > tbody > td:nth-child(2) > .period_data_div > table > tbody
+                                                                                avg
+                                                                                VVVV
+                #gradesContent > .tabContent > div > table > tbody > td:nth-child(3) > .period_data_div > table > tbody
+                   
+            */
+            const gradeMonthContainer = document.querySelector("#gradesContent > div > div:nth-child(1) > table > tbody > tr > td:nth-child(2) > div > table > tbody");
+            const gradeAverageContainer = document.querySelector("#gradesContent > div > div:nth-child(1) > table > tbody > tr > td:nth-child(3) > table > tbody");
+
+            console.log(gradeMonthContainer.children);
+            console.log(gradeAverageContainer.children);
+
+
+
+            const avgGradeTable = document.getElementsByClassName("hand viewgrades_period_avg")[0];
+            const attempt = document.getElementsByClassName("viewgrades_period_grade")[0];
+
+            avgGradeTable.style.background = "#000";
+            attempt.style.background = "#000";
+
+
         };
     };
 };
@@ -320,7 +352,7 @@ const custom_Style = `
 
     /* Dienasgrāmata */
 
-    .uncheck {
+    .uncheck, .delete, .delete2 {
         width: 20px;
         height: 20px;
         background-size: 16px 16px;
