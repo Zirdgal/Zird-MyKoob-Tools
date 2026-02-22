@@ -17,12 +17,10 @@
 
     "browser_specific_settings": {
         "gecko": {
-            "id": "I can access this myself through the firefox developer portal....",
+            "id": "{3439a3be-468d-4426-85bb-7a61653e80de}",
             "data_collection_permissions": {
                 "required": ["none"]
             }
         }
     }
-
-
 }
