@@ -78,7 +78,7 @@ body, span {
     height: 45px !important;
 }
 .top-menu-tab {
-    font-size: 16px !important;
+    font-size: 16px;
 }
 #main-tabs-ul, .header-subtabs {
     display: flex !important;
@@ -255,4 +255,25 @@ iframe {
 
 select {
     border-radius: 5px;
+}
+
+
+
+
+
+/*
+ Mobile Devices
+*/
+
+@media screen and (max-width: 600px) {
+    #head-mobile {
+        height: 5vh;
+    }
+    .header-tabs {
+        height: 5vh;
+    }
+    .top-menu-tab {
+        font-size: 32px !important;
+    }
+
 }
