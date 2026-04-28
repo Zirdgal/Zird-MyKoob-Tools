@@ -17,8 +17,7 @@
     max-width: 900px !important;
 }
 #profile_right_data .datatable td[style*="width:300px"],
-#settings_content,
-#header-top {
+#settings_content {
     display: none !important;
 }
 .activities-class {

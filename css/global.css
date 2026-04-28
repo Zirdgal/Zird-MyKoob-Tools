@@ -57,6 +57,9 @@ span {
 #header {
     width: auto !important;
 }
+#header-top {
+    display: none !important;
+}
 .tta,
 .header-subtabs li a {
     text-shadow: none !important;

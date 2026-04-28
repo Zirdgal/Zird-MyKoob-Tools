@@ -12,7 +12,7 @@
 // document.body.appendChild(newBtn);
 // newBtn.innerText = "HEHEHAHA";
 
-const zmtVersion = "1.4.001";
+const zmtVersion = "1.3.001";
 
 let pollInterval;
 
@@ -254,6 +254,8 @@ function handleCSS(url) {
     // Page-specific
     if (url.includes("?viewgrades")) {
         injectCSS("grades.css");
+    } else if (url.includes("?assignments.css")) {
+        injectCSS("assignments.css");
     } else if (url.includes("?homeworks")) {
         injectCSS("assignments.css");
     } else if (url.includes("?messages")) {
