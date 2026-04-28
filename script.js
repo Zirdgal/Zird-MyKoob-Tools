@@ -231,7 +231,7 @@ function injectContent() {
     }
 }
 
-pollInterval = setInterval(injectContent, 500);
+pollInterval = setInterval(injectContent, 1000);
 
 // css file injection
 function injectCSS(fileName) {
