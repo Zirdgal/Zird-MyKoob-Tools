@@ -6,28 +6,29 @@
 
 // css is below we just adding extra shit for fun :3
 
-
-
 // moving the topbar to the left side panel on the homepage
 
 // var newBtn = document.createElement("button");
 // document.body.appendChild(newBtn);
 // newBtn.innerText = "HEHEHAHA";
 
-
-const zmtVersion = "1.3.001";
+const zmtVersion = "1.4.001";
 
 let pollInterval;
 
 // for Grade Calculation and Injection
 function calculateAndInjectGrades() {
-    const gradeMonthContainer = document.querySelector("#gradesContent > div > div:nth-child(1) > table > tbody > tr > td:nth-child(2) > div > table > tbody");
-    const gradeAverageContainer = document.querySelector("#gradesContent > div > div:nth-child(1) > table > tbody > tr > td:nth-child(3) > table > tbody");
+    const gradeMonthContainer = document.querySelector(
+        "#gradesContent > div > div:nth-child(1) > table > tbody > tr > td:nth-child(2) > div > table > tbody",
+    );
+    const gradeAverageContainer = document.querySelector(
+        "#gradesContent > div > div:nth-child(1) > table > tbody > tr > td:nth-child(3) > table > tbody",
+    );
     const gradeTFoot = document.querySelector("#gradesContent > div > div:nth-child(1) > table > tfoot"); // Targeting the tfoot
 
     if (!gradeMonthContainer || !gradeAverageContainer || !gradeTFoot) {
         // Containers or tfoot not found, calculation did not succeed yet
-        return false; 
+        return false;
     }
 
     const gradeRows = [...gradeMonthContainer.children].slice(1);
@@ -37,7 +38,6 @@ function calculateAndInjectGrades() {
     const subjectAverages = [];
 
     gradeRows.forEach((rowElement, rowIndex) => {
-
         const targetAverageRow = averageRows[rowIndex];
 
         if (!targetAverageRow) {
@@ -47,21 +47,19 @@ function calculateAndInjectGrades() {
         const validGrades = [];
         const gradeCells = [...rowElement.children];
 
-        gradeCells.forEach((cellElement) => {
-            
+        gradeCells.forEach(cellElement => {
             // Use querySelectorAll to find all potential grade elements
             const innerSpans = cellElement.querySelectorAll("span > span");
-            
+
             if (innerSpans.length > 0) {
                 innerSpans.forEach(innerSpan => {
                     const gradeText = innerSpan.textContent.trim();
                     const gradeValue = parseInt(gradeText);
-                    
+
                     if (!isNaN(gradeValue) && gradeValue >= 1 && gradeValue <= 10 && String(gradeValue) === gradeText) {
                         validGrades.push(gradeValue);
                     }
                 });
-
             } else {
                 // Fallback for a single grade as text content
                 let gradeText = cellElement.textContent.trim();
@@ -85,7 +83,7 @@ function calculateAndInjectGrades() {
         // Determine the injection value for the subject
         let injectionValue;
         if (validGrades.length === 0) {
-            injectionValue = ""; 
+            injectionValue = "";
         } else {
             injectionValue = average.toFixed(2);
 
@@ -94,7 +92,7 @@ function calculateAndInjectGrades() {
             }
         }
 
-        //  DOM Manipulation: Inject the Subject Average 
+        //  DOM Manipulation: Inject the Subject Average
 
         const averageCell = targetAverageRow.children[1];
 
@@ -104,7 +102,7 @@ function calculateAndInjectGrades() {
             if (averageSpan) {
                 averageSpan.textContent = injectionValue;
             } else {
-                 averageCell.textContent = injectionValue;
+                averageCell.textContent = injectionValue;
             }
         }
     });
@@ -115,9 +113,9 @@ function calculateAndInjectGrades() {
         const totalSum = subjectAverages.reduce((acc, avg) => acc + avg, 0);
         totalAverage = totalSum / subjectAverages.length;
     }
-    
+
     // Format the Total Average
-    let formattedTotalAverage = (totalAverage > 0) ? totalAverage.toFixed(2) : "";
+    let formattedTotalAverage = totalAverage > 0 ? totalAverage.toFixed(2) : "";
 
     if (formattedTotalAverage.endsWith(".00")) {
         formattedTotalAverage = formattedTotalAverage.slice(0, -3);
@@ -127,12 +125,12 @@ function calculateAndInjectGrades() {
     const newTR = document.createElement("tr");
     newTR.setAttribute("class", "zebra_0");
     newTR.style.border = "1px black solid"; // <-- here
-    
+
     //Create the first TD for the Label (Subject Name Column)
     const labelTD = document.createElement("td");
     labelTD.setAttribute("colspan", "2"); // Span across the name and month columns
 
-    labelTD.innerHTML = `<strong>Visu vidējais (neieskaitot: a, i, %):</strong>`; 
+    labelTD.innerHTML = `<strong>Visu vidējais (neieskaitot: a, i, %):</strong>`;
     newTR.appendChild(labelTD);
 
     //Create the second TD for the Value (Average Column)
@@ -143,7 +141,7 @@ function calculateAndInjectGrades() {
     valueTD.style.flexDirection = "row";
     valueTD.style.padding = "6px 0px 6px 4px";
 
-    // Create teh actual value container    
+    // Create teh actual value container
     const valueSpan = document.createElement("span");
     valueSpan.textContent = formattedTotalAverage;
     valueSpan.style.textAlign = "center";
@@ -158,8 +156,6 @@ function calculateAndInjectGrades() {
     paddingSpan.style.width = "100%";
     paddingSpan.style.flexBasis = "50%";
 
-
-
     // add new items
     valueTD.appendChild(paddingSpan);
     valueTD.appendChild(valueSpan);
@@ -167,28 +163,27 @@ function calculateAndInjectGrades() {
 
     // Inject the new row into the tfoot
     // Clear any existing content in tfoot before appending
-    gradeTFoot.innerHTML = ''; 
+    gradeTFoot.innerHTML = "";
     gradeTFoot.appendChild(newTR);
 
-
-
-    return true; 
+    return true;
 }
 
 // Injects a lot of html stuff into the webpage
 function injectContent() {
     const currentURL = window.location.href;
+    handleCSS(currentURL);
     let stopPolling = false;
 
-    //  Homepage & Topbar Injection 
+    //  Homepage & Topbar Injection
     const homepageLeftBar = document.querySelector("#profile_left_data > table > tbody > tr > td");
-    
+
     if (homepageLeftBar) {
         // ... (existing homepage content injection logic)
         homepageLeftBar.setAttribute("id", "homePageLeftBar");
         const endWorkDiv = document.querySelector(`#homePageLeftBar > div:nth-child(8)`);
         const socialBtnsDiv = document.querySelector(`#homePageLeftBar > div:nth-child(23)`);
-        
+
         if (endWorkDiv && endWorkDiv.childElementCount < 1) {
             endWorkDiv.setAttribute("id", "endWorkParent");
             const endWorkBtn = document.createElement("a");
@@ -198,18 +193,18 @@ function injectContent() {
 
             if (socialBtnsDiv && socialBtnsDiv.childElementCount < 1) {
                 socialBtnsDiv.setAttribute("id", "socialBtnsDiv");
-                
+
                 let topbarDiv = document.querySelector("#header-buttons");
                 socialBtnsDiv.appendChild(topbarDiv);
-                
-                if (!currentURL.includes("mykoob.lv/?viewgrades/period")) {
-                    stopPolling = true; 
-                }
-            };
-        };
-    };
 
-    //  Footer Injection 
+                if (!currentURL.includes("mykoob.lv/?viewgrades/period")) {
+                    stopPolling = true;
+                }
+            }
+        }
+    }
+
+    //  Footer Injection
     const footer = document.querySelector("#foot > #footer");
     if (footer) {
         if (footer.childElementCount < 3) {
@@ -218,25 +213,62 @@ function injectContent() {
             zmtVersionDiv.setAttribute("id", "zmtVersion");
 
             zmtVersionDiv.innerText = `Zird MyKoob Tools Version: ${zmtVersion}`;
-        };
-    };
-    
-    //  Grade Calculator Integration 
+        }
+    }
+
+    //  Grade Calculator Integration
     if (currentURL.includes("mykoob.lv/?viewgrades/period")) {
-        
         const calculationSucceeded = calculateAndInjectGrades();
 
         if (calculationSucceeded) {
             stopPolling = true;
         }
     }
-    
-    //  Final Polling Stop Check 
+
+    //  Final Polling Stop Check
     if (stopPolling) {
         clearInterval(pollInterval);
     }
 }
 
-pollInterval = setInterval(injectContent, 100);
+pollInterval = setInterval(injectContent, 500);
 
+// css file injection
+function injectCSS(fileName) {
+    const existing = document.querySelector(`link[data-zmt="${fileName}"]`);
+    const runtime = typeof browser !== "undefined" ? browser : chrome; // if undefined set it to chrome, otherwise the found browser
 
+    if (existing) return;
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = runtime.runtime.getURL(`css/${fileName}`);
+    link.setAttribute("data-zmt", fileName);
+
+    document.head.appendChild(link);
+}
+function handleCSS(url) {
+    // Always load global
+    injectCSS("global.css");
+
+    // Page-specific
+    if (url.includes("?viewgrades")) {
+        injectCSS("grades.css");
+    } else if (url.includes("?homeworks")) {
+        injectCSS("assignments.css");
+    } else if (url.includes("?messages")) {
+        injectCSS("chat.css");
+    } else if (url.includes("?lessonsplan")) {
+        injectCSS("lessonplan.css");
+    } else {
+        injectCSS("homepage.css");
+    }
+}
+
+// add in modern html mobile viewports
+if (!document.querySelector('meta[name="viewport"]')) {
+    const meta = document.createElement("meta");
+    meta.name = "viewport";
+    meta.content = "width=device-width, initial-scale=1.0";
+    document.head.appendChild(meta);
+}

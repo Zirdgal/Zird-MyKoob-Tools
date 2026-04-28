@@ -1,0 +1,16 @@
+/* Dienasgrāmata */
+
+.uncheck,
+.delete,
+.delete2 {
+    width: 20px;
+    height: 20px;
+    background-size: 16px 16px;
+}
+.blank_gray {
+    display: none;
+}
+
+select {
+    border-radius: 5px;
+}

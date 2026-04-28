@@ -1,0 +1,83 @@
+/* middle/ aktivitātes */
+
+.main {
+    width: 100% !important;
+}
+
+#middle {
+    display: flex !important;
+    justify-content: center;
+}
+#main_content {
+    margin: 0% 1%;
+    display: flex !important;
+    justify-content: center;
+}
+#profile_right_data {
+    max-width: 900px !important;
+}
+#profile_right_data .datatable td[style*="width:300px"],
+#settings_content,
+#header-top {
+    display: none !important;
+}
+.activities-class {
+    max-width: none !important;
+}
+
+/* homepage  left */
+
+.profile-container .f1 {
+    white-space: break-spaces !important;
+    text-align: center;
+}
+
+.datatable .both-borders {
+    border-radius: 10px;
+    border: 1px solid #e2e2e3;
+}
+
+.profile-container {
+    font-size: 14px !important;
+}
+.my_profile_picture {
+    border-radius: 15px;
+    border: solid 1px #e2e2e3;
+}
+#e497548c2f4d913b7901c4e51ba59207,
+#profile_left_data .both-borders > div:nth-child(4),
+#profile_left_data .both-borders > div:nth-child(5),
+#profile_left_data .both-borders > div:nth-child(7),
+.seperator,
+#header-opt-help a,
+.mykoob-logo {
+    display: none !important;
+}
+#endWorkParent {
+    height: 30px !important;
+    display: flex !important;
+    justify-content: center;
+}
+#endWorkParent a {
+    color: #c60000ff !important;
+    font-size: 13.6px;
+}
+#endWorkParent a:hover {
+    text-decoration: underline !important;
+}
+/* homepage right */
+#activities_settings {
+    color: #000 !important;
+}
+#activities_settings:hover {
+    text-decoration: underline !important;
+}
+#activities_settings:before {
+    content: "⚙︎ ";
+    text-decoration: none;
+}
+#socialBtnsDiv {
+    height: 30px !important;
+    display: flex !important;
+    justify-content: center;
+}

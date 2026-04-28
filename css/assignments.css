@@ -1,0 +1,12 @@
+/* Assignment page (uzd) */
+.assignments_button_panel {
+    padding-bottom: 35px !important;
+}
+#assigment_popup {
+    width: 600px !important;
+    height: 300px !important;
+}
+#ap_description {
+    width: 98% !important;
+    overflow-x: hidden !important;
+}

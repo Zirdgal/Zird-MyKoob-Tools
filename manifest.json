@@ -1,17 +1,13 @@
 {
     "manifest_version": 2,
     "name": "Zird MyKoob Tools",
-    "version": "1.3",
+    "version": "1.4",
     "description": "Changes the CSS of MyKoob.lv to look nicer, as well as adding injecting HTML to move some buttons around :3",
 
     "content_scripts": [
         {
-            "matches": [
-                "https://family.mykoob.lv/*",
-                "https://mykoob.lv/*"
-            ],
-            "js": [ "/script.js" ],
-            "css": ["/style.css"]
+            "matches": ["https://family.mykoob.lv/*", "https://mykoob.lv/*"],
+            "js": ["/script.js"]
         }
     ],
 
