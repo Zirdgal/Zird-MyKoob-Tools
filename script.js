@@ -169,10 +169,50 @@ function calculateAndInjectGrades() {
     return true;
 }
 
+//
+// NAV BAR
+//
+
+function createNav() {
+    if (document.querySelector("#zmt-nav")) return;
+
+    const nav = document.createElement("div");
+    nav.id = "zmt-nav";
+
+    nav.innerHTML = `
+        <button data-page="home">🏠</button>
+        <button data-page="lesson">📅</button>
+        <button data-page="chat">💬</button>
+        <button data-page="grades">📊</button>
+        <button data-page="more">☰</button>
+    `;
+
+    document.body.appendChild(nav);
+}
+
+function setupNavActions() {
+    const routes = {
+        home: "?profile",
+        lesson: "?lessonsplan",
+        chat: "?messages",
+        grades: "?viewgrades/period",
+        more: "?profile",
+    };
+
+    document.querySelectorAll("#zmt-nav button").forEach(btn => {
+        btn.onclick = () => {
+            const page = btn.dataset.page;
+            window.location.href = routes[page];
+        };
+    });
+}
+
 // Injects a lot of html stuff into the webpage
 function injectContent() {
     const currentURL = window.location.href;
     handleCSS(currentURL);
+    createNav();
+    setupNavActions();
     let stopPolling = false;
 
     //  Homepage & Topbar Injection
@@ -231,7 +271,7 @@ function injectContent() {
     }
 }
 
-pollInterval = setInterval(injectContent, 1000);
+pollInterval = setInterval(injectContent, 500);
 
 // css file injection
 function injectCSS(fileName) {
@@ -256,9 +296,7 @@ function handleCSS(url) {
         injectCSS("grades.css");
     } else if (url.includes("?assignments.css")) {
         injectCSS("assignments.css");
-    } else if (url.includes("?homeworks")) {
-        injectCSS("assignments.css");
-    } else if (url.includes("?messages")) {
+    } else if (url.includes("?messagingWeb")) {
         injectCSS("chat.css");
     } else if (url.includes("?lessonsplan")) {
         injectCSS("lessonplan.css");

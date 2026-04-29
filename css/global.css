@@ -173,6 +173,9 @@ span {
     html {
         font-size: 15px;
     }
+    body {
+        padding-bottom: 70px;
+    }
     #main-tabs-ul {
         overflow-x: auto;
         justify-content: flex-start;
@@ -203,6 +206,26 @@ span {
 
     .top-menu-tab {
         font-size: 0.9rem;
+    }
+
+    /* Navigation */
+    #zmt-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: white;
+        display: flex;
+        z-index: 9999;
+    }
+
+    #zmt-nav button {
+        flex: 1;
+        border: none;
+        background: none;
+        color: black;
+        font-size: 18px;
     }
 }
 
