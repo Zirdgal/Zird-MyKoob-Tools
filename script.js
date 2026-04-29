@@ -173,6 +173,31 @@ function calculateAndInjectGrades() {
 // NAV BAR
 //
 
+function createDesktopNav() {
+    if (document.querySelector("#zmt-desktop-nav")) return;
+
+    const nav = document.createElement("div");
+    nav.id = "zmt-desktop-nav";
+
+    nav.innerHTML = `
+        <div class="zmt-left">
+            <a href=?profile><span class="logo"></span></a>
+        </div>
+        <div class="zmt-center">
+            <a href="?lessonsplan">Dienasgrāmata</a>
+            <a href="?viewgrades/period">Atzīmes</a>
+            <a href="?messagingWeb">Tērzēšana</a>
+            <a href="?assignments">Uzdevumi</a>
+            <a href="?files">Faili</a>
+        </div>
+        <div class="zmt-right">
+            <a href="#">☰</a>
+        </div>
+    `;
+
+    document.body.prepend(nav); // append at the start / top
+}
+
 function createNav() {
     if (document.querySelector("#zmt-nav")) return;
 
@@ -180,39 +205,48 @@ function createNav() {
     nav.id = "zmt-nav";
 
     nav.innerHTML = `
-        <button data-page="home">🏠</button>
-        <button data-page="lesson">📅</button>
-        <button data-page="chat">💬</button>
-        <button data-page="grades">📊</button>
-        <button data-page="more">☰</button>
+        <a href="?profile">🏠</a>
+        <a href="?lessonsplan">📅</a>
+        <a href="?messagingWeb">💬</a>
+        <a href="?viewgrades/period">📊</a>
+        <a href="#">☰</a>
     `;
 
     document.body.appendChild(nav);
 }
 
-function setupNavActions() {
-    const routes = {
-        home: "?profile",
-        lesson: "?lessonsplan",
-        chat: "?messages",
-        grades: "?viewgrades/period",
-        more: "?profile",
-    };
+// function setupNavActions() {
+//     const routes = {
+//         home: "?profile",
+//         lesson: "?lessonsplan",
+//         chat: "?messagingWeb",
+//         grades: "?viewgrades/period",
+//         more: "?profile",
+//         tasks: "?assignments",
+//         files: "?files",
+//     };
 
-    document.querySelectorAll("#zmt-nav button").forEach(btn => {
-        btn.onclick = () => {
-            const page = btn.dataset.page;
-            window.location.href = routes[page];
-        };
-    });
+//     document.querySelectorAll("#zmt-nav button, zmt-desktop-nav button").forEach(btn => {
+//         btn.onclick = () => {
+//             const page = btn.dataset.page;
+//             window.location.href = routes[page];
+//         };
+//     });
+// }
+
+function handleNav() {
+    if (window.innerWidth <= 768) {
+        createNav();
+    } else {
+        createDesktopNav();
+    }
 }
 
 // Injects a lot of html stuff into the webpage
 function injectContent() {
     const currentURL = window.location.href;
     handleCSS(currentURL);
-    createNav();
-    setupNavActions();
+    handleNav();
     let stopPolling = false;
 
     //  Homepage & Topbar Injection
