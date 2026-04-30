@@ -13,6 +13,7 @@
 // newBtn.innerText = "HEHEHAHA";
 
 const zmtVersion = "1.3.001";
+const runtime = typeof browser !== "undefined" ? browser : chrome;
 
 let pollInterval;
 
@@ -186,12 +187,12 @@ function createDesktopNav() {
         <div class="zmt-center">
             <a href="?lessonsplan">Dienasgrāmata</a>
             <a href="?viewgrades/period">Atzīmes</a>
-            <a href="?messagingWeb">Tērzēšana</a>
+            <a href="?messagingWeb">Vēstules</a>
             <a href="?assignments">Uzdevumi</a>
             <a href="?files">Faili</a>
         </div>
         <div class="zmt-right">
-            <a href="#">☰</a>
+            <a href="#"><img src="${runtime.runtime.getURL("img/list.png")}"></a>
         </div>
     `;
 
@@ -205,11 +206,11 @@ function createNav() {
     nav.id = "zmt-nav";
 
     nav.innerHTML = `
-        <a href="?profile">Mājas</a>
-        <a href="?lessonsplan">Dienasgrāmata</a>
-        <a href="?messagingWeb">Tērzēšana</a>
-        <a href="?viewgrades/period">Atzīmes</a>
-        <a href="#">☰</a>
+        <a href="?profile"><img class="nav-img" src="${runtime.runtime.getURL("img/home.png")}"></a>
+        <a href="?lessonsplan"><img class="nav-img" src="${runtime.runtime.getURL("img/calendar.png")}"></a>
+        <a href="?messagingWeb"><img class="nav-img" src="${runtime.runtime.getURL("img/mail.png")}"></a>
+        <a href="?viewgrades/period"><img class="nav-img" src="${runtime.runtime.getURL("img/marking.png")}"></a>
+        <a href="#"><img class="nav-img" src="${runtime.runtime.getURL("img/list.png")}"></a>
     `;
 
     document.body.appendChild(nav);
