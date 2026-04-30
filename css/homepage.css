@@ -38,6 +38,8 @@
 
 .profile-container {
     font-size: 14px !important;
+    background-image: none;
+    background-color: #e2e2e3;
 }
 .my_profile_picture {
     border-radius: 15px;
