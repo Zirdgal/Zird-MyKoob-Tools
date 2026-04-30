@@ -205,10 +205,10 @@ function createNav() {
     nav.id = "zmt-nav";
 
     nav.innerHTML = `
-        <a href="?profile">🏠</a>
-        <a href="?lessonsplan">📅</a>
-        <a href="?messagingWeb">💬</a>
-        <a href="?viewgrades/period">📊</a>
+        <a href="?profile">Mājas</a>
+        <a href="?lessonsplan">Dienasgrāmata</a>
+        <a href="?messagingWeb">Tērzēšana</a>
+        <a href="?viewgrades/period">Atzīmes</a>
         <a href="#">☰</a>
     `;
 
@@ -235,10 +235,23 @@ function createNav() {
 // }
 
 function handleNav() {
+    const desktop = document.querySelector("#zmt-desktop-nav");
+    const mobile = document.querySelector("#zmt-nav");
+
     if (window.innerWidth <= 768) {
-        createNav();
+        if (desktop) {
+            desktop.remove();
+        }
+        if (!mobile) {
+            createNav();
+        }
     } else {
-        createDesktopNav();
+        if (mobile) {
+            mobile.remove();
+        }
+        if (!desktop) {
+            createDesktopNav();
+        }
     }
 }
 
@@ -246,7 +259,6 @@ function handleNav() {
 function injectContent() {
     const currentURL = window.location.href;
     handleCSS(currentURL);
-    handleNav();
     let stopPolling = false;
 
     //  Homepage & Topbar Injection
@@ -346,3 +358,7 @@ if (!document.querySelector('meta[name="viewport"]')) {
     meta.content = "width=device-width, initial-scale=1.0";
     document.head.appendChild(meta);
 }
+
+handleNav(); // run handleNav at the start and never again
+// if the user resizes their tab
+window.addEventListener("resize", handleNav);
