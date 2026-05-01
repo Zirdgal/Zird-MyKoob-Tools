@@ -174,6 +174,35 @@ function calculateAndInjectGrades() {
 // NAV BAR
 //
 
+function createSideBar() {
+    if (document.querySelector("#zmt-sidebar")) return;
+
+    const sidebar = document.createElement("div");
+    sidebar.id = "zmt-sidebar";
+
+    sidebar.innerHTML = `
+        <div id="zmt-sidebar-top">
+            
+        </div>
+        <div id="zmt-sidebar-mid">
+            <a href="?lessonsplan">Sākums</a>
+            <a href="?lessonsplan">Dienasgrāmata</a>
+            <a href="?viewgrades/period">Atzīmes</a>
+            <a href="?messagingWeb">Vēstules</a>
+            <a href="?assignments">Uzdevumi</a>
+            <a href="?files">Faili</a>
+            <a href="?viewgrades/periodAttendance">Kavējumi</a>
+            <a href="?statistic/show">Statistika</a>
+            <a href="?journal/notes">Zīmes</a>
+            <a href="?reportperiod">Liecība</a>
+        </div>
+        <div id="zmt-sidebar-bot">
+            <a id="zmt-sidebar-end-work" href="?world/bye">Beigt Darbu!</a>
+        </div>
+    `;
+    document.body.appendChild(sidebar);
+}
+
 function createDesktopNav() {
     if (document.querySelector("#zmt-desktop-nav")) return;
 
@@ -192,7 +221,7 @@ function createDesktopNav() {
             <a href="?files">Faili</a>
         </div>
         <div class="zmt-right">
-            <a href="#"><img src="${runtime.runtime.getURL("img/list.png")}"></a>
+            <a id="zmt-desktop-modal-btn" href="#"><img src="${runtime.runtime.getURL("img/list.png")}"></a>
         </div>
     `;
 
@@ -210,34 +239,15 @@ function createNav() {
         <a href="?lessonsplan"><img class="nav-img" src="${runtime.runtime.getURL("img/calendar.png")}"></a>
         <a href="?messagingWeb"><img class="nav-img" src="${runtime.runtime.getURL("img/mail.png")}"></a>
         <a href="?viewgrades/period"><img class="nav-img" src="${runtime.runtime.getURL("img/marking.png")}"></a>
-        <a href="#"><img class="nav-img" src="${runtime.runtime.getURL("img/list.png")}"></a>
+        <a href="#" id="zmt-modal-btn"><img class="nav-img" src="${runtime.runtime.getURL("img/list.png")}"></a>
     `;
-
     document.body.appendChild(nav);
 }
-
-// function setupNavActions() {
-//     const routes = {
-//         home: "?profile",
-//         lesson: "?lessonsplan",
-//         chat: "?messagingWeb",
-//         grades: "?viewgrades/period",
-//         more: "?profile",
-//         tasks: "?assignments",
-//         files: "?files",
-//     };
-
-//     document.querySelectorAll("#zmt-nav button, zmt-desktop-nav button").forEach(btn => {
-//         btn.onclick = () => {
-//             const page = btn.dataset.page;
-//             window.location.href = routes[page];
-//         };
-//     });
-// }
 
 function handleNav() {
     const desktop = document.querySelector("#zmt-desktop-nav");
     const mobile = document.querySelector("#zmt-nav");
+    const sidebar = document.querySelector("#zmt-sidebar");
 
     if (window.innerWidth <= 768) {
         if (desktop) {
@@ -253,6 +263,10 @@ function handleNav() {
         if (!desktop) {
             createDesktopNav();
         }
+    }
+
+    if (!sidebar) {
+        createSideBar();
     }
 }
 
@@ -361,5 +375,25 @@ if (!document.querySelector('meta[name="viewport"]')) {
 }
 
 handleNav(); // run handleNav at the start and never again
+createSideBar();
 // if the user resizes their tab
 window.addEventListener("resize", handleNav);
+
+// for user that clicks outside the sidebar
+document.addEventListener("click", e => {
+    const sidebar = document.querySelector("#zmt-sidebar");
+    if (!sidebar) return;
+
+    const hamburger = e.target.closest("#zmt-modal-btn, #zmt-desktop-modal-btn");
+
+    if (hamburger) {
+        e.preventDefault();
+        e.stopPropagation();
+        sidebar.classList.toggle("open");
+        return;
+    }
+
+    if (!sidebar.contains(e.target)) {
+        sidebar.classList.remove("open");
+    }
+});
