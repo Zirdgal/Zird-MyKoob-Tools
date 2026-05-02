@@ -154,9 +154,16 @@ Sidebar
 #zmt-sidebar-top a,
 #zmt-sidebar-mid a,
 #zmt-sidebar-bot a {
+    border-radius: 15px;
     padding: 15px 0;
     text-align: center;
     font-size: 18px;
+}
+
+#zmt-sidebar-top a:hover,
+#zmt-sidebar-mid a:hover,
+#zmt-sidebar-bot a:hover {
+    background-color: #92e9ffff !important;
 }
 
 #zmt-sidebar-end-work {
