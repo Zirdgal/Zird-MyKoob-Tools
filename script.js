@@ -12,7 +12,7 @@
 // document.body.appendChild(newBtn);
 // newBtn.innerText = "HEHEHAHA";
 
-const zmtVersion = "1.3.001";
+const zmtVersion = "1.3.100";
 const runtime = typeof browser !== "undefined" ? browser : chrome;
 
 let pollInterval;
