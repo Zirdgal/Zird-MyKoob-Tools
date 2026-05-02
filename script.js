@@ -275,36 +275,6 @@ function injectContent() {
     const currentURL = window.location.href;
     handleCSS(currentURL);
     let stopPolling = false;
-
-    //  Homepage & Topbar Injection
-    const homepageLeftBar = document.querySelector("#profile_left_data > table > tbody > tr > td");
-
-    if (homepageLeftBar) {
-        // ... (existing homepage content injection logic)
-        homepageLeftBar.setAttribute("id", "homePageLeftBar");
-        const endWorkDiv = document.querySelector(`#homePageLeftBar > div:nth-child(8)`);
-        const socialBtnsDiv = document.querySelector(`#homePageLeftBar > div:nth-child(23)`);
-
-        if (endWorkDiv && endWorkDiv.childElementCount < 1) {
-            endWorkDiv.setAttribute("id", "endWorkParent");
-            const endWorkBtn = document.createElement("a");
-            endWorkBtn.href = "?world/bye";
-            endWorkBtn.innerText = "➜] Beigt darbu";
-            endWorkDiv.appendChild(endWorkBtn);
-
-            if (socialBtnsDiv && socialBtnsDiv.childElementCount < 1) {
-                socialBtnsDiv.setAttribute("id", "socialBtnsDiv");
-
-                let topbarDiv = document.querySelector("#header-buttons");
-                socialBtnsDiv.appendChild(topbarDiv);
-
-                if (!currentURL.includes("mykoob.lv/?viewgrades/period")) {
-                    stopPolling = true;
-                }
-            }
-        }
-    }
-
     //  Footer Injection
     const footer = document.querySelector("#foot > #footer");
     if (footer) {
