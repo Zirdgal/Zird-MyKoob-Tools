@@ -49,23 +49,19 @@
 #profile_left_data .both-borders > div:nth-child(4),
 #profile_left_data .both-borders > div:nth-child(5),
 #profile_left_data .both-borders > div:nth-child(7),
+#profile_left_data .both-borders > div:nth-child(8),
+#profile_left_data .both-borders > div:nth-child(9),
+#profile_left_data .both-borders > div:nth-child(10),
+#profile_left_data .both-borders > div:nth-child(11),
+#profile_left_data .both-borders > div:nth-child(12),
 .seperator,
 #header-opt-help a,
+.roundtable-top,
+.roundtable-bottom,
 .mykoob-logo {
     display: none !important;
 }
-#endWorkParent {
-    height: 30px !important;
-    display: flex !important;
-    justify-content: center;
-}
-#endWorkParent a {
-    color: #c60000ff !important;
-    font-size: 13.6px;
-}
-#endWorkParent a:hover {
-    text-decoration: underline !important;
-}
+
 /* homepage right */
 #activities_settings {
     color: #000 !important;
@@ -77,8 +73,28 @@
     content: "⚙︎ ";
     text-decoration: none;
 }
-#socialBtnsDiv {
-    height: 30px !important;
-    display: flex !important;
-    justify-content: center;
+
+@media (max-width: 768px) {
+    tr:has(> #profile_right_data) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #profile_right_data {
+        padding-left: 0 !important;
+        padding-top: 15px !important;
+    }
+
+    #profile_image_wrapper,
+    .profile-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .my_profile_picture {
+        width: 50vw;
+    }
+}
+
+@media (max-width: 480px) {
 }
