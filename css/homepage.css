@@ -92,7 +92,10 @@
         /*align-items: center;*/
     }
     .my_profile_picture {
-        width: 33vw;
+        width: 40vw;
+    }
+    .profile-container:has(> .fr) {
+        justify-content: space-around;
     }
 }
 
